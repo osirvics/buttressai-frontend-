@@ -1,6 +1,6 @@
 # ButtressAI Landing Page
 
-Welcome to the ButtressAI landing page repository. This is the official website for the ButtressAI mobile application, showcasing our AI-powered allusion and reference discovery platform.
+Welcome to the ButtressAI landing page repository. This is the official website for the ButtressAI mobile application, showcasing our AI-powered allusion and reference discovery platform
 
 ## Features
 
@@ -8,7 +8,6 @@ Welcome to the ButtressAI landing page repository. This is the official website 
 - Separate Terms of Service and Privacy Policy pages
 - Mobile-friendly navigation
 - Interactive UI elements with smooth animations
-- 3D device showcase
 
 ## Live Site
 
