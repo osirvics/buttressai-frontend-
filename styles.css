@@ -329,39 +329,154 @@ nav h1 {
 .hero-image {
     position: relative;
     animation: fadeIn 1s ease-out 0.6s backwards;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.hero-image::after {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 40px;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0.3), transparent 70%);
-    filter: blur(10px);
+    max-width: 300px;
+    margin-left: auto;
 }
 
 .hero-image img {
     width: 100%;
     height: auto;
     border-radius: 24px;
-    transform: rotateY(-15deg) rotateX(10deg);
-    box-shadow: 
-        25px 25px 50px rgba(0, 0, 0, 0.3),
-        -10px -10px 30px rgba(255, 255, 255, 0.05),
-        inset 0 0 40px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
 .hero-image:hover img {
-    transform: rotateY(-20deg) rotateX(15deg) scale(1.02);
+    transform: translateY(-5px);
+}
+
+/* Benefits Section */
+.benefits {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.benefit-card {
+    padding: 40px 30px;
+    text-align: left;
+}
+
+.benefit-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.benefit-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: var(--primary);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.testimonial-card {
+    padding: 30px;
+    text-align: left;
+}
+
+.testimonial-content {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.testimonial-content::before {
+    content: '"';
+    font-size: 60px;
+    color: var(--accent);
+    opacity: 0.3;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info h4 {
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.author-info p {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* CTA Section */
+.cta {
+    text-align: center;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(233, 169, 124, 0.1), transparent 70%);
+    pointer-events: none;
+}
+
+.cta h2 {
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
 }
 
 /* Legal Pages */
