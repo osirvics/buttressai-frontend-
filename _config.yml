@@ -1,0 +1,24 @@
+name: ButtressAI
+title: ButtressAI - Smart Allusions for Powerful Communication
+description: AI-powered allusion discovery platform for speakers and writers
+baseurl: "/buttressai-frontend-"
+url: "https://osirvics.github.io"
+
+# Build settings
+markdown: kramdown
+exclude: ['README.md']
+
+# Theme settings
+theme: null
+remote_theme: null
+
+# Default layout
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+
+# File to render as index
+index_page: "index.html"
