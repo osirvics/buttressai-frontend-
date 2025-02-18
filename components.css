@@ -276,6 +276,7 @@ nav h1 a {
     line-height: 1.8;
     margin-bottom: 20px;
     position: relative;
+    padding: 0 0 0 10px;
 }
 
 .testimonial-content::before {
@@ -285,7 +286,7 @@ nav h1 a {
     opacity: 0.3;
     position: absolute;
     top: -20px;
-    left: -10px;
+    left: -20px;
 }
 
 .testimonial-author {
