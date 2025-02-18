@@ -181,9 +181,22 @@ nav h1 a {
 /* Benefits Section */
 .benefits {
     text-align: center;
-    padding: 150px 0 100px;
+    padding: 100px 0;
     position: relative;
     z-index: 1;
+}
+
+/* Common section styles */
+.benefits h2,
+.features h2,
+.testimonials h2,
+.cta h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    background: linear-gradient(to right, var(--white), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .benefits-grid {
@@ -219,13 +232,8 @@ nav h1 a {
 }
 
 /* Features Section */
-.features h2 {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 16px;
-    background: linear-gradient(to right, var(--white), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.features {
+    padding: 100px 0;
 }
 
 .feature-grid {
@@ -417,9 +425,11 @@ footer::before {
 @media (max-width: 768px) {
     .mobile-menu {
         display: block;
+        z-index: 1001;
     }
 
     .nav-links {
+        display: flex;
         position: fixed;
         top: 0;
         right: -100%;
@@ -435,6 +445,32 @@ footer::before {
         gap: 40px;
         transition: right 0.3s ease;
         padding: 80px 20px;
+    }
+
+    .hero {
+        padding: 120px 0 0;
+    }
+
+    .benefits {
+        padding: 80px 0 60px;
+    }
+
+    .features,
+    .testimonials {
+        padding: 60px 0;
+    }
+
+    .cta {
+        padding: 60px 0;
+    }
+
+    /* Consistent section header spacing */
+    .benefits h2,
+    .features h2,
+    .testimonials h2,
+    .cta h2 {
+        font-size: 32px;
+        margin-bottom: 32px;
     }
 
     .nav-links.active {
@@ -472,8 +508,10 @@ footer::before {
         font-size: 36px;
     }
 
-    .nav-links {
-        display: none;
+    .hero-screenshot {
+        width: 280px;
+        margin: 0 auto;
+        transform: translateY(20px);
     }
 
     .feature-grid {
