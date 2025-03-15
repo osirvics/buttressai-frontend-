@@ -135,14 +135,34 @@ nav h1 a {
     padding-top: 40px;
 }
 
-.hero-content h1 {
+.animated-title {
     font-size: 48px;
     line-height: 1.2;
     margin-bottom: 24px;
+    font-weight: bold;
     background: linear-gradient(to right, var(--white), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: fadeIn 1s ease-out;
+    display: inline-block;
+}
+
+#changing-text {
+    display: inline-block;
+    min-width: 120px;
+}
+
+#cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .hero-content p {
@@ -505,7 +525,7 @@ footer::before {
         flex-direction: column;
     }
 
-    .hero-content h1 {
+    .animated-title {
         font-size: 36px;
     }
 
@@ -554,7 +574,7 @@ footer::before {
         gap: 32px;
     }
 
-    .hero-content h1 {
+    .animated-title {
         font-size: 42px;
     }
 

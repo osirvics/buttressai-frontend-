@@ -39,6 +39,52 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Text animation for hero section
+const useCases = ["Article", "Blog Post", "Speech", "Newsletter", "Essay", "Presentation"];
+const changingText = document.getElementById('changing-text');
+const cursor = document.getElementById('cursor');
+let currentIndex = 0;
+let currentText = '';
+let isDeleting = false;
+let typeTimeout;
+
+function typeEffect() {
+    const fullText = useCases[currentIndex];
+    
+    if (isDeleting) {
+        // Deleting text
+        currentText = fullText.substring(0, currentText.length - 1);
+    } else {
+        // Typing text
+        currentText = fullText.substring(0, currentText.length + 1);
+    }
+    
+    changingText.textContent = currentText;
+    
+    let typeSpeed = isDeleting ? 100 : 200;
+    
+    // If it's complete
+    if (!isDeleting && currentText === fullText) {
+        // Pause at complete word
+        typeSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && currentText === '') {
+        isDeleting = false;
+        // Move to next word
+        currentIndex = (currentIndex + 1) % useCases.length;
+        // Pause before typing new word
+        typeSpeed = 500;
+    }
+    
+    clearTimeout(typeTimeout);
+    typeTimeout = setTimeout(typeEffect, typeSpeed);
+}
+
+// Start the animation when the page loads
+window.addEventListener('DOMContentLoaded', () => {
+    typeEffect();
+});
+
 // Animate elements when they come into view
 const observerOptions = {
     root: null,
