@@ -9,7 +9,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="components.css">
-    <script defer src="script.js"></script>
+    <script defer src="script.js" type="text/javascript"></script>
+    <!-- Critical inline styles to ensure animation works even if CSS files fail or load slowly -->
+    <style>
+        .animated-title {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            font-weight: bold;
+            background: linear-gradient(to right, #ffffff, #e9a97c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        #changing-text {
+            display: inline-block;
+            min-width: 120px;
+        }
+        #cursor {
+            display: inline-block;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            -webkit-animation: blink 1s step-end infinite;
+            color: #e9a97c;
+            -webkit-text-fill-color: #e9a97c;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @-webkit-keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
     <nav class="glass-nav">
@@ -150,5 +185,58 @@
             <p>&copy; 2025 ButtressAI. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Inline backup script for title animation -->
+    <script type="text/javascript">
+        // Failsafe script for animation
+        (function() {
+            try {
+                // Wait for all content to be loaded
+                window.addEventListener('load', function() {
+                    // Check if animation is already running by looking at text content
+                    const changingText = document.getElementById('changing-text');
+                    const cursor = document.getElementById('cursor');
+                    
+                    if (changingText && changingText.textContent === 'Article') {
+                        // Animation hasn't started, initialize it
+                        const useCases = ["Article", "Blog Post", "Speech", "Newsletter", "Essay", "Presentation"];
+                        let currentIndex = 0;
+                        let currentText = useCases[0];
+                        let isDeleting = false;
+                        
+                        function typeEffect() {
+                            const fullText = useCases[currentIndex];
+                            
+                            if (isDeleting) {
+                                currentText = fullText.substring(0, currentText.length - 1);
+                            } else {
+                                currentText = fullText.substring(0, currentText.length + 1);
+                            }
+                            
+                            changingText.textContent = currentText;
+                            
+                            let typeSpeed = isDeleting ? 100 : 200;
+                            
+                            if (!isDeleting && currentText === fullText) {
+                                typeSpeed = 2000;
+                                isDeleting = true;
+                            } else if (isDeleting && currentText === '') {
+                                isDeleting = false;
+                                currentIndex = (currentIndex + 1) % useCases.length;
+                                typeSpeed = 500;
+                            }
+                            
+                            setTimeout(typeEffect, typeSpeed);
+                        }
+                        
+                        // Start animation
+                        typeEffect();
+                    }
+                });
+            } catch (err) {
+                console.log('Backup animation script error:', err);
+            }
+        })();
+    </script>
 </body>
 </html>

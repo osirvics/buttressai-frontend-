@@ -41,49 +41,79 @@ window.addEventListener('scroll', () => {
 
 // Text animation for hero section
 const useCases = ["Article", "Blog Post", "Speech", "Newsletter", "Essay", "Presentation"];
-const changingText = document.getElementById('changing-text');
-const cursor = document.getElementById('cursor');
 let currentIndex = 0;
 let currentText = '';
 let isDeleting = false;
 let typeTimeout;
 
-function typeEffect() {
-    const fullText = useCases[currentIndex];
-    
-    if (isDeleting) {
-        // Deleting text
-        currentText = fullText.substring(0, currentText.length - 1);
-    } else {
-        // Typing text
-        currentText = fullText.substring(0, currentText.length + 1);
+// Function to initialize animation
+function initTextAnimation() {
+    try {
+        const changingText = document.getElementById('changing-text');
+        const cursor = document.getElementById('cursor');
+        
+        if (!changingText || !cursor) {
+            console.error('Animation elements not found in DOM');
+            return; // Exit if elements not found
+        }
+        
+        // Animation function
+        function typeEffect() {
+            try {
+                const fullText = useCases[currentIndex];
+                
+                if (isDeleting) {
+                    // Deleting text
+                    currentText = fullText.substring(0, currentText.length - 1);
+                } else {
+                    // Typing text
+                    currentText = fullText.substring(0, currentText.length + 1);
+                }
+                
+                if (changingText) {
+                    changingText.textContent = currentText;
+                }
+                
+                let typeSpeed = isDeleting ? 100 : 200;
+                
+                // If it's complete
+                if (!isDeleting && currentText === fullText) {
+                    // Pause at complete word
+                    typeSpeed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && currentText === '') {
+                    isDeleting = false;
+                    // Move to next word
+                    currentIndex = (currentIndex + 1) % useCases.length;
+                    // Pause before typing new word
+                    typeSpeed = 500;
+                }
+                
+                clearTimeout(typeTimeout);
+                typeTimeout = setTimeout(typeEffect, typeSpeed);
+            } catch (error) {
+                console.error('Error in typeEffect:', error);
+            }
+        }
+        
+        // Start the animation
+        typeEffect();
+        
+    } catch (error) {
+        console.error('Error initializing text animation:', error);
     }
-    
-    changingText.textContent = currentText;
-    
-    let typeSpeed = isDeleting ? 100 : 200;
-    
-    // If it's complete
-    if (!isDeleting && currentText === fullText) {
-        // Pause at complete word
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && currentText === '') {
-        isDeleting = false;
-        // Move to next word
-        currentIndex = (currentIndex + 1) % useCases.length;
-        // Pause before typing new word
-        typeSpeed = 500;
-    }
-    
-    clearTimeout(typeTimeout);
-    typeTimeout = setTimeout(typeEffect, typeSpeed);
 }
 
-// Start the animation when the page loads
-window.addEventListener('DOMContentLoaded', () => {
-    typeEffect();
-});
+// Start the animation when the page loads - using multiple event listeners for redundancy
+document.addEventListener('DOMContentLoaded', initTextAnimation);
+
+// Backup in case the DOMContentLoaded event has already fired
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    setTimeout(initTextAnimation, 100);
+}
+
+// Final failsafe - try again after a delay
+setTimeout(initTextAnimation, 500);
 
 // Animate elements when they come into view
 const observerOptions = {
